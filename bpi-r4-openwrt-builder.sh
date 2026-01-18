@@ -4,10 +4,10 @@ rm -rf openwrt
 rm -rf mtk-openwrt-feeds
 
 git clone --branch openwrt-25.12 https://github.com/openwrt/openwrt.git openwrt || true
-cd openwrt; git checkout 4542656411cb3b8ced8036a8263c430e31d16685; cd -;		#kernel: modules: add kmod-pmbus-sensors package
+cd openwrt; git checkout b590b79a7797e571daa450e261033004183a2530; cd -;		#kernel: modules: add kmod-pmbus-sensors package
 
 git clone --branch master https://git01.mediatek.com/openwrt/feeds/mtk-openwrt-feeds || true
-cd mtk-openwrt-feeds; git checkout d96a47edab841a98997274c5f1be364d8c4543fd; cd -;	#[openwrt-24/openwrt-25.12][MAC80211][WiFi7][modify the sns script]
+cd mtk-openwrt-feeds; git checkout 13d0caab6da409cfbbe161401c54454e5a2ae220; cd -;	#[openwrt-24/openwrt-25.12][MAC80211][WiFi7][modify the sns script]
 
 #\cp -r my_files/feed_revision mtk-openwrt-feeds/autobuild/unified/
 
@@ -33,28 +33,9 @@ make -j$(nproc) V=s
 
 exit 0
 
-
-#============================ extension for Telit FN990 family
-
-#cd openwrt
-\cp -r ../my_files/sms-tool/ feeds/packages/utils/sms-tool
-\cp -r ../my_files/modemdata-main/ feeds/packages/utils/modemdata 
-\cp -r ../my_files/luci-app-modemdata-main/luci-app-modemdata/ feeds/luci/applications
-\cp -r ../my_files/luci-app-lite-watchdog/ feeds/luci/applications
-\cp -r ../my_files/luci-app-sms-tool-js-main/luci-app-sms-tool-js/ feeds/luci/applications
-
 ./scripts/feeds update -a
 ./scripts/feeds install -a
 
-\cp -r ../my_files/qmi.sh package/network/utils/uqmi/files/lib/netifd/proto/
-chmod -R 755 package/network/utils/uqmi/files/lib/netifd/proto
-chmod -R 755 feeds/luci/applications/luci-app-modemdata/root
-chmod -R 755 feeds/luci/applications/luci-app-sms-tool-js/root
-chmod -R 755 feeds/packages/utils/modemdata/files/usr/share
-
-\cp -r ../configs/config.telit .config
-
-#scripts/feeds uninstall crypto-eip pce tops-tool
 
 make menuconfig
 make -j24 V=sc
