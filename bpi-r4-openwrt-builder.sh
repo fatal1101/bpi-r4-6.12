@@ -5,14 +5,14 @@ rm -rf openwrt
 rm -rf mtk-openwrt-feeds
 
 git clone --branch openwrt-25.12 https://github.com/openwrt/openwrt.git openwrt
-cd openwrt; git checkout 34ae6ba2d861e710e3c130c95cdb7eb4a1286121; cd -;		#procd: update to Git HEAD (2026-03-11)
+cd openwrt; git checkout b21cfa8f8ccd8ccb89c9a735b9566fff29dc61a7; cd -;		#odhcpd: update to 25.12 Git HEAD (2026-03-16)
 
 git clone --branch master https://git01.mediatek.com/openwrt/feeds/mtk-openwrt-feeds
-cd mtk-openwrt-feeds; git checkout 9b5754e3a361635595ea31a14176b14169e69d18; cd -;	
+cd mtk-openwrt-feeds; git checkout ad6d92efcde329c950f12545b183622f34c1c85f; cd -;	#[openwrt][mt798x][config][Disable unused trusted firmware packages]
 
 \cp -r my_files/feed_revision mtk-openwrt-feeds/autobuild/unified/
 
-\cp -r my_files/999-sfp-10-additional-quirks.patch mtk-openwrt-feeds/25.12/files/target/linux/mediatek/patches-6.12
+#\cp -r my_files/999-sfp-10-additional-quirks.patch mtk-openwrt-feeds/25.12/files/target/linux/mediatek/patches-6.12
 
 \cp -r my_files/9999-image-bpi-r4-sdcard.patch mtk-openwrt-feeds/25.12/patches-base
 
