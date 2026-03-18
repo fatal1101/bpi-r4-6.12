@@ -10,7 +10,7 @@ cd openwrt; git checkout b21cfa8f8ccd8ccb89c9a735b9566fff29dc61a7; cd -;		#odhcp
 git clone --branch master https://git01.mediatek.com/openwrt/feeds/mtk-openwrt-feeds
 cd mtk-openwrt-feeds; git checkout ad6d92efcde329c950f12545b183622f34c1c85f; cd -;	#[openwrt][mt798x][config][Disable unused trusted firmware packages]
 
-\cp -r my_files/feed_revision mtk-openwrt-feeds/autobuild/unified/
+#\cp -r my_files/feed_revision mtk-openwrt-feeds/autobuild/unified/
 
 #\cp -r my_files/999-sfp-10-additional-quirks.patch mtk-openwrt-feeds/25.12/files/target/linux/mediatek/patches-6.12
 
